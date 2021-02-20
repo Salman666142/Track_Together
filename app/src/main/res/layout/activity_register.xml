@@ -7,11 +7,9 @@
     android:background="@drawable/login_bg"
     android:layout_gravity="center">
 
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="400dp"
+        android:layout_height="450dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,8 +26,8 @@
                 android:id="@+id/loginText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Login"
+                android:layout_marginTop="24dp"
+                android:text="Register"
                 android:textColor="@color/greenDark"
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -43,7 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/edittv_bg"
                 android:ems="10"
@@ -63,7 +61,7 @@
                 android:id="@+id/inputPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/edittv_bg"
                 android:ems="10"
                 android:hint="Password"
@@ -78,32 +76,52 @@
                 app:layout_constraintStart_toStartOf="@+id/inputEmail"
                 app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
-            <Button
-                android:id="@+id/btnLogin"
+
+            <EditText
+                android:id="@+id/inputConformPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/edittv_bg"
-                android:text="Login"
+                android:ems="10"
+                android:hint=" Confirm Password"
+                android:inputType="textPassword"
+                android:paddingStart="15dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/greenDark"
+                app:layout_constraintEnd_toEndOf="@+id/inputEmail"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/inputEmail"
+                app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/edittv_bg"
+                android:text="Register"
                 android:textColor="@color/greenDark"
                 app:layout_constraintEnd_toEndOf="@+id/inputPassword"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/inputPassword"
-                app:layout_constraintTop_toBottomOf="@+id/isAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/inputConformPassword" />
 
             <TextView
-                android:id="@+id/createNewAccount"
+                android:id="@+id/loginActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Don't have account ??Sign Up"
+                android:layout_marginTop="32dp"
+                android:text="Already have an Account? Login"
                 android:textColor="@color/greenDark"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/inputPassword"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/btnLogin"
-                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+                app:layout_constraintStart_toStartOf="@+id/btnRegister"
+                app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -114,20 +132,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <CheckBox
-                android:id="@+id/isAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:onClick="itemClicked"
-                android:text="Admin"
-                android:textColor="@color/greenDark"
-                app:layout_constraintStart_toStartOf="@+id/inputPassword"
-                app:layout_constraintTop_toBottomOf="@+id/inputPassword"
-                tools:ignore="OnClick" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
