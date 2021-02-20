@@ -39,6 +39,7 @@ public class EffectedUserActivity extends AppCompatActivity {
     List<User> list;
 
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +52,11 @@ public class EffectedUserActivity extends AppCompatActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        mAuth=FirebaseAuth.getInstance();
-        mUser=mAuth.getCurrentUser();
-        UserRef= FirebaseDatabase.getInstance().getReference().child("Users");
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        UserRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        recyclerView=findViewById(R.id.effectedRecyclerView);
+        recyclerView = findViewById(R.id.effectedRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         LoadUser();
@@ -73,28 +74,29 @@ public class EffectedUserActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(EffectedUserActivity.this);
                 builder.setCancelable(false);
 
-                HashMap hashMap=new HashMap();
+                HashMap hashMap = new HashMap();
 
                 holder.email.setText(model.getEmail());
                 holder.username.setText(model.getUsername());
 
-                Picasso.get().load(model.getProfileImageUrl()).into(holder.profileImageView);
-                if (model.getEffected().equals("yes"))
-                {
+                try {
+                    Picasso.get().load(model.getProfileImageUrl()).into(holder.profileImageView);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (model.getEffected().equals("yes")) {
                     holder.effected.setImageResource(R.drawable.ic_effected);
                     builder.setTitle("Do you want to Remove Effected");
-                    hashMap.put("effected","no");
-                }else if (model.getEffected().equals("no"))
-                {
+                    hashMap.put("effected", "no");
+                } else if (model.getEffected().equals("no")) {
                     builder.setTitle("Do you want to Add into Effected List");
                     holder.effected.setImageResource(R.drawable.not_effected);
-                    hashMap.put("effected","yes");
+                    hashMap.put("effected", "yes");
 
-                }else
-                {
+                } else {
                     holder.effected.setImageResource(R.drawable.ic_notconfirm);
                     builder.setTitle("Do you want to Remove Effected");
-                    hashMap.put("effected","yes");
+                    hashMap.put("effected", "yes");
                 }
                 holder.effected.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -105,13 +107,11 @@ public class EffectedUserActivity extends AppCompatActivity {
                                 UserRef.child(getRef(position).getKey()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                                     @Override
                                     public void onComplete(@NonNull Task task) {
-                                        if (task.isSuccessful())
-                                        {
+                                        if (task.isSuccessful()) {
                                             notifyDataSetChanged();
                                             Toast.makeText(EffectedUserActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-                                        }else
-                                        {
-                                            Toast.makeText(EffectedUserActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(EffectedUserActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -123,15 +123,12 @@ public class EffectedUserActivity extends AppCompatActivity {
                         }).show().create();
                     }
                 });
-
-
                 holder.email.setText(model.getEmail());
             }
-
             @NonNull
             @Override
             public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_view_layout_user,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_view_layout_user, parent, false);
                 return new PostViewHolder(view);
             }
         };
